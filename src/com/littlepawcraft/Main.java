@@ -176,7 +176,7 @@ public class Main {
         }
 
         // Scan from y,z side
-        for (int j = 0; j <= case1.size() ; j++) {
+        for (int j = 0; j <= case2.size() ; j++) {
             for (int k = 0; k <= case3.size() ; k++) {
                 final int y = j;
                 final int z = k;
