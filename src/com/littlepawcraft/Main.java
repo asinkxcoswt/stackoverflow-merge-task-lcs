@@ -1,13 +1,11 @@
 package com.littlepawcraft;
 
+import com.littlepawcraft.improved.CommonSubsequenceFinder;
+
 import java.util.*;
 import java.util.function.Function;
 
 public class Main {
-    //#136 AAA
-    //AAC
-    //AUA
-
 
     static record Cell(int value, int x, int y, int z, int refX, int refY, int refZ, boolean isCommon, Task taskX, Task taskY, Task taskZ) {
         @Override
@@ -274,17 +272,21 @@ public class Main {
 //                new Cell(0, 3, 5, 7, 0, 0, 0, true, C, C, C)), List.of(case1), List.of(case2), List.of(case3))
 //                .report(true);
 //
-        Set<List<Cell>> allCommonSubsequenceList = new HashSet<>();
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "XYZ"));
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "XZY"));
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "YXZ"));
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "YZX"));
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "ZXY"));
-        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "ZYX"));
-        System.out.println(allCommonSubsequenceList);
+//        Set<List<Cell>> allCommonSubsequenceList = new HashSet<>();
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "XYZ"));
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "XZY"));
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "YXZ"));
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "YZX"));
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "ZXY"));
+//        allCommonSubsequenceList.addAll(findAllCommonSubsequences(List.of(case1), List.of(case2), List.of(case3), "ZYX"));
+//        System.out.println(allCommonSubsequenceList);
+//
+//        List<ParallelTask> allPossibleMergeList = allCommonSubsequenceList.stream().map(commonSubsequence -> merge(commonSubsequence, List.of(case1), List.of(case2), List.of(case3))).toList();
+//        allPossibleMergeList.forEach(t -> t.report(true));
 
-        List<ParallelTask> allPossibleMergeList = allCommonSubsequenceList.stream().map(commonSubsequence -> merge(commonSubsequence, List.of(case1), List.of(case2), List.of(case3))).toList();
-        allPossibleMergeList.forEach(t -> t.report(true));
+        // improved version to find all common subsequences in N list
 
+        Set<List<Task>> allCommonSubsequences = new CommonSubsequenceFinder().findAllInNList(List.of(case1), List.of(case2), List.of(case3));
+        System.out.println(allCommonSubsequences);
     }
 }

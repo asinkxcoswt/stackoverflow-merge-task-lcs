@@ -1,5 +1,7 @@
 package com.littlepawcraft;
 
+import java.util.Objects;
+
 abstract class Task {
     public abstract String id();
     public abstract void run();
@@ -39,5 +41,20 @@ abstract class Task {
     @Override
     public String toString() {
         return this.id();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (o instanceof Task t) {
+            return id().equals(t.id());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id());
     }
 }
