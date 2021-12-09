@@ -93,13 +93,6 @@ public class CommonSubsequenceFinder {
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * @param list must be a non-repeating list
-     */
-    public <T> boolean isASubsequenceOf(List<T> list, List<T> subSequence) {
-        return list.stream().filter(subSequence::contains).toList().equals(subSequence);
-    }
-
     public <T> Set<List<T>> findAllInNList(List<T> ... listArray) {
         if (listArray.length <= 1) {
             return new HashSet<>();
